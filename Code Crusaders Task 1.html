@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+</head>
+<body>
+    <!--Muzammil Hameed
+    Danish Qureshi
+    Parshant Kukreja
+    Aditya Kanwal-->
+
+    <button onclick="Task()">Submit</button>
+    <script>
+        function Task(){
+            let a=prompt("Enter Any Number");
+            let b;
+            for (let c = 2; c < a; c++) {
+                b=1
+                for (let d = 2; d <=c/d; d++) {
+                    if(c%d == 0){
+                        b=0;
+                    }
+                }
+                if(b==1){
+                    document.write(c+"<br>")
+                }
+            }
+        }
+    </script>
+</body>
+</html>
