@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchanger</title>
+</head>
+<style>
+    .Amount{
+        background-color: lightskyblue; 
+        width: 80%;
+        margin: 0 auto;
+        padding: 20px;
+        border-radius: 15px;
+    }
+    .Amount label{
+        font-size: 25px;
+    }
+    .Amount input{
+        margin: 10px 0;
+        padding: 10px 50px 10px 5px;
+    }
+    .Amount select{
+        margin: 10px 0;
+        padding: 10px 50px 10px 5px;
+    }
+    input[type="number"]::-webkit-inner-spin-button{
+        -webkit-appearance: none;
+        margin: 0;
+    }
+</style>
+<body style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; text-align: center;">
+        <div class="Amount">
+            <label> Amount</label><br>
+        <input type="number" id="Number"><br>
+        <label>From Currency</label><br>
+        <select id="Currency">
+            <option value="1">USD</option>
+            <option value="0.85">EUR</option>
+            <option value="0.73">GBP</option>
+            <option value="111.20">JPY</option>
+            <option value="1.27">CAD</option>
+        </select><br>
+        <label>To Currency</label><br>
+        <select id="To">
+            <option value="1">USD</option>
+            <option value="0.85">EUR</option>
+            <option value="0.73">GBP</option>
+            <option value="111.20">JPY</option>
+            <option value="1.27">CAD</option>
+        </select><br>
+        <div style="display: flex; gap: 30px; align-items: center; justify-content: center;">
+        <input type="submit" value="Submit" onclick="convertCurrency()">
+        <span id="result" style="padding: 15px 120px; background-color: #fff;"></span>
+    </div>
+        </div>
+
+    <script>
+        function convertCurrency(){
+            let amount = parseFloat(document.getElementById("Number").value);
+            let fromCurrency = parseFloat(document.getElementById("Currency").value);
+            let toCurrency = parseFloat(document.getElementById("To").value);
+            let convertedAmount = amount * (toCurrency / fromCurrency);
+            document.getElementById("result").innerHTML = convertedAmount.toFixed(2);
+        }
+    </script>
+</body>
+</html>
