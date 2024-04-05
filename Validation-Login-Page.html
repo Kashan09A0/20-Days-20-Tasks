@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<style>
+    .Main{
+        margin: 50px auto;
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        box-shadow: 0 0 5px black;
+        padding: 20px;
+    }
+    .Main h2{
+        text-align: center;
+        font-size: 30px;
+    }
+    .Main input{
+        width: 95%;
+        padding: 5px 10px;
+    }
+    .Main button{
+        border-radius: 5px;
+        padding: 4px 15px;
+        width: 70px;
+    }
+    .Main span{
+        color: red;
+        text-align: center;
+    }
+</style>
+<body>
+    <div class="Main">
+        <h2>Login</h2>
+        <input type="email" id="Email" placeholder="Email">
+        <input type="password" id="Pass" placeholder="Password">
+        <span></span>
+        <button id="BTN" onclick="Submit()">Login</button>
+    </div>
+    
+    <script>
+        function Submit(){
+            let Email = document.getElementById("Email").value;
+            let Pass = document.getElementById("Pass").value;
+            let msg = document.querySelector("span");
+            let EmailValidation = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+            let PassValidation =/^(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,}$/;
+            if (!EmailValidation.test(Email)) {
+                msg.innerHTML = "Please Enter a Valid Email";
+            }
+            else if (!PassValidation.test(Pass)) {
+                msg.innerHTML = "Password Must Contain Min 8 Character 1 Digit & 1 Special Character";
+            }else {
+                msg.innerHTML = "Thank's for Login";
+                msg.style.color = "green";
+            }
+        }
+    </script>
+</body>
+</html>
