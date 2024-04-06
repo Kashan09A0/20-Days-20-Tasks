@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Task 11</title>
+
+</head>
+<body>
+    <!-- Muzammil Hameed
+    Danish Qureshi
+    Parshant Kukreja
+    Aditya Kanwal-->
+
+    <h2>Choose colors for each section of the rainbow:</h2>
+    <input type="color" id="color1" value="#ff0000"> 
+    <input type="color" id="color2" value="#ff7f00"> 
+    <input type="color" id="color3" value="#ffff00"> 
+    <input type="color" id="color4" value="#00ff00"> 
+    <input type="color" id="color5" value="#0000ff"> 
+    <input type="color" id="color6" value="#4b0082">
+    <input type="color" id="color7" value="#9400d3"><br>
+    <canvas id="rainbowCanvas" width="600px" height="240px" style="margin-top: 50px;" ></canvas><br>
+    <button onclick="Check()">Change</button>
+
+    <script>
+        function Check() {
+            const canvas = document.getElementById('rainbowCanvas');
+            const rainbow = canvas.getContext('2d');
+
+            const colors = [
+                document.getElementById('color1').value,
+                document.getElementById('color2').value,
+                document.getElementById('color3').value,
+                document.getElementById('color4').value,
+                document.getElementById('color5').value,
+                document.getElementById('color6').value,
+                document.getElementById('color7').value
+            ];
+
+            for (let i = 0; i < colors.length; i++) {
+                rainbow.beginPath();
+                rainbow.arc(250, 200, 200 - i * 25, Math.PI, 0);
+                rainbow.fillStyle = colors[i];
+                rainbow.fill();
+            }
+        };
+    </script>
+</body>
+</html>
