@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Weather Checker</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+    }
+    .container {
+        max-width: 600px;
+        margin: 50px auto;
+        text-align: center;
+    }
+    h1 {
+        color: #333;
+    }
+    #weather-info {
+        margin-top: 20px;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Weather App</h1>
+        <div id="weather-info">
+        </div>
+    </div>
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+          if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(fetchWeather, showError);
+          } else {
+              alert('Geolocation is not supported by this browser.');
+          }
+      });
+
+      function fetchWeather(position) {
+          const { latitude, longitude } = position.coords;
+          const API_KEY = '6ec2c4dc2af55b596da69cd5edd99106';
+          const apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
+
+          fetch(apiUrl)
+              .then(response => response.json())
+              .then(data => {
+                  displayWeather(data);
+              })
+              .catch(error => {
+                  console.log('Error fetching weather data:', error);
+              });
+      }
+
+      function displayWeather(data) {
+          const weatherInfo = document.getElementById('weather-info');
+          const temperature = Math.round(data.main.temp - 273.15);
+          weatherInfo.innerHTML = `
+              <h2>${data.name}</h2>
+              <p>Temperature: ${temperature}&deg;C</p>
+              <p>Weather: ${data.weather[0].description}</p>
+          `;
+      }
+
+      function showError(error) {
+          switch(error.code) {
+              case error.PERMISSION_DENIED:
+                  alert('User denied the request for Geolocation.');
+                  break;
+              case error.POSITION_UNAVAILABLE:
+                  alert('Location information is unavailable.');
+                  break;
+              case error.TIMEOUT:
+                  alert('The request to get user location timed out.');
+                  break;
+              case error.UNKNOWN_ERROR:
+                  alert('An unknown error occurred.');
+                  break;
+          }
+      }
+  </script>
+</body>
+</html>
