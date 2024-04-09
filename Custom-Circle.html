@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .Box{
+        border: 1px solid black;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+</style>
+<body>
+    <div class="Main">
+        <input type="color" id="Color1">
+        <input type="color" id="Color2">
+        <input type="color" id="Color3">
+        <input type="color" id="Color4">
+        <input type="color" id="Color5"><br><br>
+        <button onclick="Submit()" style="margin: 20px; padding: 10px 20px;">Submit</button>
+        <div style="position: relative; background-color: aqua; width: 35%;">
+        <canvas id="Box1" class="Box" style="position: absolute;"></canvas>
+        <canvas id="Box2" class="Box" style="position: absolute; top: 40px; left: 40px;"></canvas>
+        <canvas id="Box3" class="Box" style="position: absolute; top: 80px; left: 80px;"></canvas>
+        <canvas id="Box4" class="Box" style="position: absolute; top: 120px; left: 120px;"></canvas>
+        <canvas id="Box5" class="Box" style="position: absolute; top: 160px; left: 160px;"></canvas>
+        </div><br>
+    </div>
+    
+    <script>
+        function Submit(){
+            let Color = document.getElementById("Color1").value;
+            let Color1 = document.getElementById("Color2").value;
+            let Color2 = document.getElementById("Color3").value;
+            let Color3 = document.getElementById("Color4").value;
+            let Color4 = document.getElementById("Color5").value;
+            let Box=document.getElementById("Box1");
+            let Box1=document.getElementById("Box2");
+            let Box2=document.getElementById("Box3");
+            let Box3=document.getElementById("Box4");
+            let Box4=document.getElementById("Box5");
+
+            Box.style.backgroundColor=Color
+            Box1.style.backgroundColor=Color1
+            Box2.style.backgroundColor=Color2
+            Box3.style.backgroundColor=Color3
+            Box4.style.backgroundColor=Color4
+        }
+    </script>
+</body>
+</html>
