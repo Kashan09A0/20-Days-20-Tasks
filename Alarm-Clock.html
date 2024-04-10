@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Clock</title>
+  <style>
+    body {
+      background-color: #f4f4f4;
+    }
+
+    .Timer {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    #Submit {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+
+    input{
+      padding: 8px;
+      font-size: 16px;
+      margin-right: 10px;
+    }
+
+    button {
+      padding: 8px 20px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="Timer">
+    <h1>Submit Timer</h1>
+    <div id="Submit"></div>
+    <div>
+      <label for="datetime">Enter target date and time:</label>
+      <input type="datetime-local" id="datetime">
+      <button onclick="Submit()">Start Submit</button>
+    </div>
+  </div>
+
+  <script>
+    function Submit() {
+      let input = document.getElementById('datetime');
+      let targetDate = new Date(input.value).getTime();
+
+      if (isNaN(targetDate)) {
+        alert('Please enter a valid date and time.');
+        return;
+      }
+
+      let msg = document.getElementById('Submit');
+
+      let timer = setInterval(() => {
+        let now = new Date().getTime();
+        let date = targetDate - now;
+
+        if (date < 0) {
+          clearInterval(timer);
+          msg.innerHTML = 'Submit expired';
+          return;
+        }
+
+        let days = Math.floor(date / (1000 * 60 * 60 * 24));
+        let hours = Math.floor((date % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes = Math.floor((date % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds = Math.floor((date % (1000 * 60)) / 1000);
+
+        msg.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
