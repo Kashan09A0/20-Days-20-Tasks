@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Image Gallery with Lightbox Effect</title>
+  <style>
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .Images {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+    }
+
+    .Img {
+      width: 30%;
+      height: 200px;
+      margin: 5px;
+      cursor: pointer;
+    }
+
+    .Large {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+    }
+
+    .Large-image {
+      display: block;
+      margin: 30px auto;
+      max-width: 90%;
+      max-height: 90%;
+    }
+
+    .close {
+      color: #fff;
+      font-size: 3em;
+      position: absolute;
+      top: 10px;
+      right: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery">
+    <div class="Images">
+      <img src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg" alt="" class="Img" data-src="https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885_1280.jpg">
+      <img src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg" alt="" class="Img" data-src="https://img.freepik.com/free-photo/painting-mountain-lake-with-mountain-background_188544-9126.jpg">
+      <img src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg" alt="" class="Img" data-src="https://cdn.pixabay.com/photo/2016/05/05/02/37/sunset-1373171_1280.jpg">
+    </div>
+    <div class="Large">
+      <span class="close">&times;</span>
+      <img src="" alt="Large Image" class="Large-image">
+    </div>
+  </div>
+  <script>
+
+    document.addEventListener('DOMContentLoaded', function () {
+      const Images = document.querySelectorAll('.Img');
+      const Large = document.querySelector('.Large');
+      const LargeImage = document.querySelector('.Large-image');
+      const closeButton = document.querySelector('.close');
+
+      Images.forEach(Img => {
+        Img.addEventListener('click', function () {
+          const largeImagePath = this.getAttribute('data-src');
+          LargeImage.src = largeImagePath;
+          Large.style.display = 'flex';
+          document.body.style.overflow = 'hidden';
+        });
+      });
+
+      closeButton.addEventListener('click', function () {
+        Large.style.display = 'none';
+        document.body.style.overflow = 'auto';
+      });
+
+      Large.addEventListener('click', function (event) {
+        if (event.target === Large) {
+          Large.style.display = 'none';
+          document.body.style.overflow = 'auto';
+        }
+      });
+    });
+  </script>
+</body>
+</html>
