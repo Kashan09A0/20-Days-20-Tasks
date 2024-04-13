@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Task 19</title>
+  <style>
+    .Section {
+      width: 50%;
+      text-align: center;
+      margin: 0 auto;
+      height: 300px;
+      opacity: 0; 
+      transform: translateY(20px); 
+      transition: opacity 0.5s, transform 0.5s;
+    }
+    .revealed {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+    <!-- Muzammil Hameed
+    Danish Qureshi
+    Parshant Kukreja
+    Aditya Kanwal-->
+  <div class="Main">
+    <img src="../New folder/Shrek-Juice/Images/banner1.jpg" alt="" width="100%">
+    <div class="Section">
+      <h1>Scroll 1</h1>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis beatae optio minima, atque sint, consequatur esse sit maiores natus explicabo minus quae veniam laboriosam libero? Architecto laborum exercitationem ea officiis.</p>
+    </div>
+    <div class="Section">
+      <h1>Scroll 2</h1>
+      <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Perspiciatis beatae optio minima, atque sint, consequatur esse sit maiores natus explicabo minus quae veniam laboriosam libero? Architecto laborum exercitationem ea officiis.</p>
+    </div>
+  </div>
+
+  <script>
+    function View(element) {
+      let rect = element.getBoundingClientRect();
+      return (
+        rect.top >= 0 &&
+        rect.left >= 0 &&
+        rect.bottom <= (window.innerHeight || document.documentElement.clientHeight) &&
+        rect.right <= (window.innerWidth || document.documentElement.clientWidth)
+      );
+    }
+
+    function Scroll() {
+      const sections = document.querySelectorAll('.Section');
+      sections.forEach(section => {
+        if (View(section)) {
+          section.classList.add('revealed');
+        } else {
+          section.classList.remove('revealed');
+        }
+      });
+    }
+
+      window.addEventListener('scroll', Scroll);
+      Scroll();
+  </script>
+</body>
+</html>
